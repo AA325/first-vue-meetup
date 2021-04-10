@@ -1,0 +1,7 @@
+{
+    "objectscript.conn": {
+        "server": "cache",
+        "ns": "USER3",
+        "active": true
+    }
+}

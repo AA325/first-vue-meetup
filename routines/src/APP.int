@@ -1,0 +1,29 @@
+ROUTINE APP [Type=INT]
+APP
+	;
+	;
+	;
+	;
+    S ^MI(":WS","PORT")=7777
+    S ^MI(":WS","ROUTES","OPTIONS","app/api","API^APP")=""
+    S ^MI(":WS","ROUTES","POST","app/api","API^APP")=""
+	;
+	Q
+	;
+	;
+API(%Q,%R,%A)
+    N %J
+    s %R("mime")=$$GetMimeType^MIWS("JSON")
+    S %R("header","Access-Control-Allow-Origin")="*"
+    S %R("header","Access-Control-Allow-Headers")="Origin, X-Requested-With, Content-Type, Accept, auth, jwt"
+    I '$D(@%Q("body")) Q
+    N %RR D DECODE^MIWS(%Q("body"),"%RR")
+    N %ROUTINE S %ROUTINE=%RR("routine") S ^A("ROUTINES")=%ROUTINE
+    K %RR("routine") K %J
+    D @(%ROUTINE_"(.%RR,.%J,.%A)")
+    K @%R D ENCODE^MIWS("%J",%R)
+    Q
+	;
+CheckDB(I,O,A)
+    S O("data","status")="DB running!!"
+    Q
