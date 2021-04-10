@@ -1,6 +1,6 @@
-# Base Quasar App (base-app)
+# First Vue Live Coding Session 1
 
-A Quasar Framework app
+[First event](https://www.meetup.com/vue-online-live-coding-interactive-group/events/277378851/)
 
 ## Install the dependencies
 ```bash
